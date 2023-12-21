@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- dao 인터페이스와 매핑 !!!  -->
+<mapper namespace="com.application.trainingVer1.board.dao.BoardDAO">
+
+	<insert id="insertBoard" parameterType="BoardDTO">
+		INSERT INTO BOARD(
+			PASSWD,
+			WRITER,
+			SUBJECT,
+			CONTENT
+		)
+		VALUES (
+			#{passwd},
+			#{writer},
+			#{subject},
+			#{content}
+		)
+	</insert>
+
+	
+	<select id="selectListBoard" resultType="BoardDTO">
+		SELECT
+				*
+		FROM
+				BOARD
+	</select>
+
+
+	<select id="selectOneBoard" parameterType="long" resultType="BoardDTO">
+		SELECT
+				*
+		FROM
+				BOARD
+		WHERE
+				BOARD_ID = #{boardId}
+	</select>
+
+
+	<select id="selectOnePasswd" parameterType="long" resultType="String">
+		SELECT
+				PASSWD
+		FROM
+				BOARD
+		WHERE
+				BOARD_ID = #{boardId}
+	</select>
+
+
+	<update id="updateBoard" parameterType="BoardDTO">
+		UPDATE
+				BOARD
+		SET
+				SUBJECT = #{subject} ,
+				CONTENT = #{content} ,
+				MODIFY_DT = NOW()
+		WHERE
+				BOARD_ID = #{boardId}
+	</update>
+
+	
+	<delete id="deleteBoard" parameterType="long">
+		DELETE FROM 
+				BOARD
+		WHERE
+				BOARD_ID = #{boardId}
+	</delete>
+	
+
+	<update id="updateReadCnt" parameterType="long">
+		UPDATE
+				BOARD
+		SET
+				READ_CNT = READ_CNT + 1
+		WHERE
+				BOARD_ID = #{boardId}	
+	</update>
+
+</mapper>
