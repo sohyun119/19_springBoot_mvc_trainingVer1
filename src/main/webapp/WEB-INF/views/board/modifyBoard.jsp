@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>modify board</title>
-<!-- resources 경로부터 작성한다. -->
-<script src="resources/ckeditor/ckeditor.js"></script>
+<!-- /static폴더 하위 경로부터 작성한다. -->
+<script src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
